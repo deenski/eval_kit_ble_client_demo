@@ -23,8 +23,13 @@
  *  found in the Bend Labs Sensor Demo Android App.
  *  
  *  Tested Board: Adafruit Feather NRF52840
- *  Should work with: Adafruit Feather NRF52832, Sparkfun Pro
- *  NRF52840 Mini, or similar NRF52 Based Bluefruit Board
+ *  Should work with: Adafruit Feather NRF52832 or similar 
+ *  NRF52 Based Bluefruit Board
+ *  
+ *  Tested With Sparkfun Pro nRF52840 Mini it works but you may have to 
+ *  change lines 99 & 100 in variant.h to:
+ *  #define PIN_SERIAL1_RX       (15)
+ *  #define PIN_SERIAL1_TX       (17)
  *  
  *  Sketch connects to first Eval Kit found and then determines
  *  if the sensor is a one or two axis sensor. Enables stretch 
@@ -111,7 +116,7 @@ void loop()
   // New data received through ams_notify_callback
   if(newData)
   {
-    char s[100];
+    char s[30];
 
     // Print this way to keep time in task (freertos) short.
     sprintf(s, "%0.1f,%0.1f\r\n", sample[0], sample[1]);
@@ -179,8 +184,8 @@ void connect_callback(uint16_t conn_handle)
     Serial.println("Found device information service");
 
     // Get the Model, determines if it's one axis or two axis sensor
-    char s[100]; uint16_t s_size = 100;
-    uint16_t len = bledis.getModel(s, s_size);
+    char s[30];
+    uint16_t len = bledis.getModel(s, 30);
 
     // Compare model string to see if it's one axis or two axis
     if(strcmp(s, one_axis_model) == 0)
