@@ -19,7 +19,6 @@ stream wireless data from Bend Labs One and Two Axis Eval Kits
  *  change lines 99 & 100 in variant.h to:
  *  #define PIN_SERIAL1_RX       (15)
  *  #define PIN_SERIAL1_TX       (17)
- *  For Sparkfun Pro nRF52840 Mini, Char Write may not work
  *  
  *  Sketch connects to first Eval Kit found and then determines
  *  if the sensor is a one or two axis sensor. Enables stretch 

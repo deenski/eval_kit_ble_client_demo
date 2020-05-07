@@ -186,6 +186,7 @@ void connect_callback(uint16_t conn_handle)
     // Get the Model, determines if it's one axis or two axis sensor
     char s[30];
     uint16_t len = bledis.getModel(s, 30);
+    s[12] = '\0'; // put null character at end of model string
 
     // Compare model string to see if it's one axis or two axis
     if(strcmp(s, one_axis_model) == 0)
